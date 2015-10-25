@@ -46,14 +46,23 @@ class TestAppUITests: XCTestCase {
     }
 
     func testCulc() {
-        app.textFields["IntegerA"].tap()
-        app.textFields["IntegerA"].typeText("1")
-        
-        app.textFields["IntegerB"].tap()
-        app.textFields["IntegerB"].typeText("1")
-        
-        app.buttons["ComputeSumButton"].tap()
+        tap("IntegerA")
+        fillText("IntegerA", "1")
+
+        tap("IntegerB")
+        fillText("IntegerB", "1")
+
+        tap("ComputeSumButton")
 
         XCTAssert(app.staticTexts["Answer"].exists)
     }
+    
+    private func tap(title :String){
+        app.textFields[title].tap()
+    }
+    
+    private func fillText(title :String, _ body: String){
+        app.textFields[title].typeText(body)
+    }
+
 }
