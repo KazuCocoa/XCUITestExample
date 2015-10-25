@@ -44,4 +44,16 @@ class TestAppUITests: XCTestCase {
         app.childrenMatchingType(.Window).elementBoundByIndex(0).childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Map).element.tap()
         XCTAssertNotNil(app.maps.matchingIdentifier("map view").element.exists, "don't display map view")
     }
+
+    func testCulc() {
+        app.textFields["IntegerA"].tap()
+        app.textFields["IntegerA"].typeText("1")
+        
+        app.textFields["IntegerB"].tap()
+        app.textFields["IntegerB"].typeText("1")
+        
+        app.buttons["ComputeSumButton"].tap()
+
+        XCTAssert(app.staticTexts["Answer"].exists)
+    }
 }
