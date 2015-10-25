@@ -11,7 +11,7 @@ import XCTest
 class TestAppUITests: XCTestCase {
 
     private let app: XCUIApplication = XCUIApplication()
-    
+
     override func setUp() {
         super.setUp()
         continueAfterFailure = false
@@ -46,23 +46,29 @@ class TestAppUITests: XCTestCase {
     }
 
     func testCulc() {
-        tap("IntegerA")
+        tap("IntegerA", ele_type: "text")
         fillText("IntegerA", "1")
 
-        tap("IntegerB")
+        tap("IntegerB", ele_type: "text")
         fillText("IntegerB", "1")
 
-        tap("ComputeSumButton")
+        tap("ComputeSumButton", ele_type: "button")
 
-        XCTAssert(app.staticTexts["Answer"].exists)
+        XCTAssert(app.staticTexts["2"].exists)
     }
     
-    private func tap(title :String){
-        app.textFields[title].tap()
+    private func tap(title: String, ele_type type : String){
+        switch type {
+        case "text":
+            app.textFields[title].tap()
+        case "button":
+            app.buttons[title].tap()
+        default:
+            app.textFields[title].tap()
+        }
     }
     
-    private func fillText(title :String, _ body: String){
+    private func fillText(title: String, _ body: String){
         app.textFields[title].typeText(body)
     }
-
 }

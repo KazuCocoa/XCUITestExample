@@ -502,6 +502,7 @@
 				72F78C221BDBD89E00B68D02 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
