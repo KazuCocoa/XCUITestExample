@@ -8,3 +8,4 @@ The sample application is cloned from sample of Appium.([here](https://github.co
 1. Add `XCUITest` target via `Editor` exist on status bar.
 2. Update architecture for  64 bit.
 3. Add schema to run `XCUITest`.
+4. Add some test cases on `TestAppUITests` with Swift.
