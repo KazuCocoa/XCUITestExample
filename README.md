@@ -1,7 +1,7 @@
 # XCUITestExample
 
 This example is just a sample for demo in STAR.
-The sample application is cloned from sample of Appium.([here](https://github.com/appium/sample-code/tree/master/sample-code/apps/TestApp) is URL for it.)
+The sample application is cloned from sample of Appium.( The sample is [here](https://github.com/appium/sample-code/tree/master/sample-code/apps/TestApp))
 
 
 # What I do
