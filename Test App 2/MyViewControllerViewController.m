@@ -29,6 +29,7 @@
 
 @implementation MyViewControllerViewController
 @synthesize computeSumButton;
+@synthesize showAlertButton;
 @synthesize answerLabel;
 @synthesize firstArg;
 @synthesize secondArg;
@@ -62,13 +63,15 @@
                                    selector:@selector(logLocationAuthFromTimer:)
                                    userInfo:nil
                                     repeats:NO];
+    
+    firstArg.accessibilityIdentifier = @"IntegerA";
+    secondArg.accessibilityIdentifier = @"IntegerB";
+    computeSumButton.accessibilityIdentifier = @"ComputeSumButton";
+    answerLabel.accessibilityIdentifier = @"Answer";
+    locationStatus.accessibilityIdentifier = @"locationStatus";
 
-    [firstArg setAccessibilityIdentifier:@"IntegerA"];
-    [secondArg setAccessibilityIdentifier:@"IntegerB"];
-    [computeSumButton setAccessibilityIdentifier:@"ComputeSumButton"];
-    [answerLabel setAccessibilityIdentifier:@"Answer"];
-    [locationStatus setAccessibilityIdentifier:@"locationStatus"];
-
+    showAlertButton.accessibilityIdentifier = @"accessibilityShowAlert";
+    
     UISwipeGestureRecognizer * swipe =[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipeUp:)];
     swipe.direction = UISwipeGestureRecognizerDirectionUp;
     [self.view addGestureRecognizer:swipe];
@@ -149,6 +152,7 @@
                                                    delegate:nil
                                           cancelButtonTitle:@"Cancel"
                                           otherButtonTitles:@"OK", nil];
+//    alert.accessibilityIdentifier = @"accessibility cool title";
     [alert show];
     [alert release];
 }

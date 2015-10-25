@@ -29,6 +29,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *answerLabel;
 @property (retain, nonatomic) IBOutlet UISwitch *locationStatus;
 @property (retain, nonatomic) IBOutlet UIButton *computeSumButton;
+@property (retain, nonatomic) IBOutlet UIButton *showAlertButton;
 @property (nonatomic, retain) CLLocationManager *locationMgr;
 
 - (IBAction)testGesture:(id)sender;
