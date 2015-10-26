@@ -8,20 +8,33 @@
 
 import XCTest
 
-class TestAppUITests: XCTestCase {
-
-    private let app: XCUIApplication = XCUIApplication()
+class TestAppUITests: BaseUITestClass {
+    /*
+    override func spec(){
+        describe("base scenarios") {
+            beforeEach {
+                super.setUp()
+                self.continueAfterFailure = false
+                self.app.launch()
+            }
+            
+            it("should display alert with text") {
+                self.app.buttons["show alert"]
+                    .tap()
+                self.app.alerts["Cool title"].collectionViews.buttons["OK"]
+                    .tap()
+                XCTAssertFalse(self.app.alerts["Cool title"].exists)
+            }
+        }
+    }
+    */
 
     override func setUp() {
         super.setUp()
         continueAfterFailure = false
         app.launch()
     }
-
-    override func tearDown() {
-        super.tearDown()
-    }
-
+    
     func testShouldDisplayAlertWithText(){
         app.buttons["show alert"]
             .tap()
@@ -57,18 +70,4 @@ class TestAppUITests: XCTestCase {
         XCTAssert(app.staticTexts["2"].exists)
     }
     
-    private func tap(title: String, ele_type type : String){
-        switch type {
-        case "text":
-            app.textFields[title].tap()
-        case "button":
-            app.buttons[title].tap()
-        default:
-            app.textFields[title].tap()
-        }
-    }
-    
-    private func fillText(title: String, _ body: String){
-        app.textFields[title].typeText(body)
-    }
 }

@@ -1,0 +1,29 @@
+PODS:
+  - Nimble (2.0.0)
+  - Quick (0.7.0)
+
+DEPENDENCIES:
+  - Nimble (from `https://github.com/Quick/Nimble.git`, branch `xcode7.1`)
+  - Quick (from `https://github.com/Quick/Quick.git`, branch `xcode7.1`)
+
+EXTERNAL SOURCES:
+  Nimble:
+    :branch: xcode7.1
+    :git: https://github.com/Quick/Nimble.git
+  Quick:
+    :branch: xcode7.1
+    :git: https://github.com/Quick/Quick.git
+
+CHECKOUT OPTIONS:
+  Nimble:
+    :commit: 3646ed5025f5eae080a98f4a1b3ca0cce775cbc8
+    :git: https://github.com/Quick/Nimble.git
+  Quick:
+    :commit: d1d795e58d0f972e8acacaee62a83d4b86db11dd
+    :git: https://github.com/Quick/Quick.git
+
+SPEC CHECKSUMS:
+  Nimble: 1b4a306f27b2355c8c789087e092decb1a226238
+  Quick: c99021edb599f0aae3319455778ce36d00be140b
+
+COCOAPODS: 0.39.0
