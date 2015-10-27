@@ -36,11 +36,15 @@ class TestAppUITests: BaseUITestClass {
     }
     
     func testShouldDisplayAlertWithText(){
-        app.buttons["show alert"]
-            .tap()
-        app.alerts["Cool title"].collectionViews.buttons["OK"]
-            .tap()
-        XCTAssertFalse(app.alerts["Cool title"].exists)
+        // run 10 times and measure performance during it.
+        // Fail if the performance decrease from baseline.
+        measureMetrics([XCTPerformanceMetric_WallClockTime], automaticallyStartMeasuring: true, forBlock: {
+            self.app.buttons["show alert"]
+                .tap()
+            self.app.alerts["Cool title"].collectionViews.buttons["OK"]
+                .tap()
+            XCTAssertFalse(self.app.alerts["Cool title"].exists)
+        })
     }
     
     func testShouldDisplayAlertWithAccessibility() {
@@ -52,10 +56,20 @@ class TestAppUITests: BaseUITestClass {
     }
     
     func testShouldOpenGuesteView() {
+        // define XCTestExpectation to wait on waitForExpectationsWithTimeout
+        var theExpectation :XCTestExpectation
+        theExpectation = expectationWithDescription("show map view")
+
         app.buttons["Test Gesture"]
             .tap()
-        app.childrenMatchingType(.Window).elementBoundByIndex(0).childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Map).element.tap()
-        XCTAssertNotNil(app.maps.matchingIdentifier("map view").element.exists, "don't display map view")
+
+        // Tell XCTestExpectation go waitForExpectationsWithTimeout
+        theExpectation.fulfill()
+
+        // Wait handler until interval.
+        waitForExpectationsWithTimeout(5, handler: {
+            error in XCTAssertNotNil(self.app.maps.matchingIdentifier("map view").element.exists, "don't display map view")
+        })
     }
 
     func testCulc() {
