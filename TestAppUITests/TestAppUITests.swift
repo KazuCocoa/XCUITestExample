@@ -34,11 +34,23 @@ class TestAppUITests: BaseUITestClass {
         continueAfterFailure = false
         app.launch()
     }
-    
-    func testShouldDisplayAlertWithText(){
+
+    func testShouldDisplayAlertWithTextWithMeasureBlock(){
         // run 10 times and measure performance during it.
         // Fail if the performance decrease from baseline.
-        measureMetrics([XCTPerformanceMetric_WallClockTime], automaticallyStartMeasuring: true, forBlock: {
+        self.measureBlock {
+            self.app.buttons["show alert"]
+                .tap()
+            self.app.alerts["Cool title"].collectionViews.buttons["OK"]
+                .tap()
+            XCTAssertFalse(self.app.alerts["Cool title"].exists)
+        }
+    }
+
+    func testShouldDisplayAlertWithTextWithMeasureMetrics(){
+        // run 10 times and measure performance during it.
+        // Fail if the performance decrease from baseline.
+        self.measureMetrics([XCTPerformanceMetric_WallClockTime], automaticallyStartMeasuring: true, forBlock: {
             self.app.buttons["show alert"]
                 .tap()
             self.app.alerts["Cool title"].collectionViews.buttons["OK"]
@@ -46,7 +58,7 @@ class TestAppUITests: BaseUITestClass {
             XCTAssertFalse(self.app.alerts["Cool title"].exists)
         })
     }
-    
+
     func testShouldDisplayAlertWithAccessibility() {
         app.buttons.matchingIdentifier("accessibilityShowAlert").element
             .tap()
@@ -54,7 +66,7 @@ class TestAppUITests: BaseUITestClass {
             .tap()
         XCTAssertFalse(app.alerts["Cool title"].exists)
     }
-    
+
     func testShouldOpenGuesteView() {
         // define XCTestExpectation to wait on waitForExpectationsWithTimeout
         var theExpectation :XCTestExpectation
